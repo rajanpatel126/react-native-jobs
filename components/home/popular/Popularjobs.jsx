@@ -11,11 +11,17 @@ import { useRouter } from "expo-router";
 import styles from "./popularjobs.style";
 import { COLORS, SIZES } from "../../../constants";
 import PopularJobCard from "../../common/cards/popular/PopularJobCard";
+import useFetch from "../../../hook/useFetch";
 
 const Popularjobs = () => {
   const router = useRouter();
-  const isLoding = false;
-  const error = false;
+  const [selectedJob, setSelectedJob] = useState();
+  const handleCardPress = (item) => {};
+  const { data, isLoding, error } = useFetch("search", {
+    query: "React developer",
+    num_pages: "1",
+  });
+  console.log(data);
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -33,8 +39,14 @@ const Popularjobs = () => {
           <Text>Something went wrong</Text>
         ) : (
           <FlatList
-            data={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
-            renderItem={(item) => <PopularJobCard item={item} />}
+            data={data}
+            renderItem={({ item }) => (
+              <PopularJobCard
+                item={item}
+                selectedJob={selectedJob}
+                handleCardPress={handleCardPress}
+              />
+            )}
             keyExtractor={(item) => item?.job_id}
             contentContainerStyle={{ columnGap: SIZES.medium }}
             horizontal
