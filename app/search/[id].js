@@ -13,9 +13,6 @@ import useFetch from "../../hook/useFetch";
 import { ScreenHeaderBtn, NearbyJobCard } from "../../components";
 import { COLORS, icons, SIZES } from "../../constants";
 import styles from "../../styles/search";
-// import RAPID_API_KEY from "@env";
-// const rapidApiKey = RAPID_API_KEY;
-// console.log(rapidApiKey);
 
 const JobSearch = () => {
   const params = useLocalSearchParams();
@@ -35,8 +32,7 @@ const JobSearch = () => {
         method: "GET",
         url: `https://jsearch.p.rapidapi.com/search`,
         headers: {
-          "X-RapidAPI-Key":
-            "c7d330b37bmsh7a50ac1740f01acp1b855bjsn02bb1be667c6",
+          "X-RapidAPI-Key": "",
           "X-RapidAPI-Host": "jsearch.p.rapidapi.com",
         },
         params: {
